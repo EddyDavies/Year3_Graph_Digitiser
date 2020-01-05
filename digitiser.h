@@ -2,11 +2,13 @@
 #define DIGITISER_H
 
 #include <QMainWindow>
-#include <QLabel>
-#include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QPixmap>
+#include <QtCore>
+#include <QtGui>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Digitiser; }
@@ -25,5 +27,8 @@ private slots:
 
 private:
     Ui::Digitiser *ui;
+    QGraphicsScene *scene;
+    QPixmap pix;
+    QGraphicsPixmapItem *pixItem;
 };
 #endif // DIGITISER_H

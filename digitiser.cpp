@@ -6,6 +6,10 @@ Digitiser::Digitiser(QWidget *parent)
     , ui(new Ui::Digitiser)
 {
     ui->setupUi(this);
+    setCentralWidget(ui->view);
+
+    scene = new QGraphicsScene(this);
+    ui->view->setScene(scene);
 }
 
 Digitiser::~Digitiser()
@@ -13,15 +17,15 @@ Digitiser::~Digitiser()
     delete ui;
 }
 
-
 void Digitiser::on_actionOpen_triggered()
 {
-    QString fileName=QFileDialog::getOpenFileName(this, tr("Open Line Graph"), "", tr("Images (*.png *.jpg *.jpeg *.bmp)"));
-
+    QString fileName=QFileDialog::getOpenFileName(this, tr("Open Line Graph"), "", tr("Images (*.BMP *.GIF *.JPG *.JPEG *.PNG *.PBM *.PGM *.PPM *.XBM *.XPM)"));
     if(QString::compare(fileName, QString()) !=0){
-        QPixmap pix(fileName);
-        ui->label_image->setPixmap(pix);
+        scene->clear();
+        pix = QPixmap::fromImage(QImage(fileName));
+        pixItem = scene->addPixmap(pix);
+        ui->view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
     }else{
-        QMessageBox::critical(this,tr("Error"),tr("No file selected. Please try again."));
+        QMessageBox::warning(this,tr("Error"),tr("No file selected. Please try again."));
     }
 }
