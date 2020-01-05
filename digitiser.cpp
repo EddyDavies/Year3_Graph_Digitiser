@@ -43,6 +43,28 @@ void Digitiser::resizeEvent(QResizeEvent *){
     ui->view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
     }else{
-        QMessageBox::warning(this,tr("Error"),tr("No file selected. Please try again."));
+void Digitiser::on_actionCalibrate_triggered(){
+    if(!opened) {
+        int openNow = QMessageBox::information(this,tr("Digitiser Calibration"),tr("A graph must be loaded first, would you like to do that now?"),
+                                 QMessageBox::Yes | QMessageBox::No, //two options in message box
+                                 QMessageBox::Yes); //highlighted or suggested option
+        switch(openNow){
+        case QMessageBox::Yes://yes was clicked
+            on_actionOpen_triggered();
+            break;
+        case QMessageBox::No://no was clicked
+            break;
+        };
+    }else{
+        calibrating = true;
+        if (xAxis.size()==0)
+            QMessageBox::information(this,tr("Digitiser Calibration X Axis"),tr("Click twice on the X axis"));
+        else if (yAxis.size()==0)
+            QMessageBox::information(this,tr("Digitiser Calibration Y Axis"),tr("Click twice on the Y axis"));
     }
+    }
+void Digitiser::cancelCalibration(){
+    xAxis.clear();
+    yAxis.clear();
+    calibrating = false;
 }
