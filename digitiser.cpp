@@ -42,7 +42,39 @@ void Digitiser::on_actionOpen_triggered(){
 void Digitiser::resizeEvent(QResizeEvent *){
     ui->view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
+
+void Digitiser::mousePressEvent(QMouseEvent *mouseevent){
+    qDebug() <<      mouseevent->pos();
+    if(calibrating){
+        if(xAxis.size()<2){
+            xAxis.push_back(mouseevent->pos());
+            calibrate(xAxis, x1, x2);
+        }else if(yAxis.size()<2){
+            yAxis.push_back(mouseevent->pos());
+            calibrate(yAxis, y1, y2);
     }else{
+            calibrating = false;
+        }
+    }
+}
+
+
+void Digitiser::calibrate(QVector<QPointF> axis, double first, double second){
+    switch(axis.size()){
+    case 1:
+        first = QInputDialog::getDouble(this, tr("Digitiser Calibration 1st Value"),
+                                     tr("What value was clicked:"), x1, -10000, 10000, 2, &ok);
+        if (!ok) cancelCalibration();
+        break;
+    case 2:
+        second = QInputDialog::getDouble(this, tr("Digitiser Calibration 2nd Value"),
+                                     tr("What value was clicked:"), x2, -10000, 10000, 2, &ok);
+        if (!ok) cancelCalibration();
+        on_actionCalibrate_triggered();
+        break;
+    }
+}
+
 void Digitiser::on_actionCalibrate_triggered(){
     if(!opened) {
         int openNow = QMessageBox::information(this,tr("Digitiser Calibration"),tr("A graph must be loaded first, would you like to do that now?"),
