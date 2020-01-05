@@ -39,6 +39,9 @@ void Digitiser::on_actionOpen_triggered(){
         };
     }
 }
+void Digitiser::resizeEvent(QResizeEvent *){
+    ui->view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+}
     }else{
         QMessageBox::warning(this,tr("Error"),tr("No file selected. Please try again."));
     }

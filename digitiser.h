@@ -22,6 +22,8 @@ public:
     Digitiser(QWidget *parent = nullptr);
     ~Digitiser();
 
+    void resizeEvent(QResizeEvent *);
+
 private slots:
     void on_actionOpen_triggered();
 
