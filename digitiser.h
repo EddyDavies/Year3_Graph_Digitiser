@@ -26,6 +26,7 @@ private slots:
     void on_actionOpen_triggered();
 
 private:
+    bool opened = false; 
     Ui::Digitiser *ui;
     QGraphicsScene *scene;
     QPixmap pix;
