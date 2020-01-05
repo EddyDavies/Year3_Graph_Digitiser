@@ -3,5 +3,6 @@
         <file>Folder.png</file>
         <file>Save file.png</file>
         <file>New.png</file>
+        <file>Calibration.png</file>
     </qresource>
 </RCC>
