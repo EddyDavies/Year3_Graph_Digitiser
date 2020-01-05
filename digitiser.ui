@@ -25,7 +25,11 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QGraphicsView" name="view"/>
+      <widget class="QLabel" name="label_image">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -47,13 +51,7 @@
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
    </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-   </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
