@@ -25,10 +25,19 @@ Digitiser::~Digitiser()
     delete ui;
 }
 
+void Digitiser::selectGroup(int){
+    Color r = red;
+    switch(r)
+    {
+        case red  : std::cout << "red\n";   break;
+        case green: std::cout << "green\n"; break;
+        case blue : std::cout << "blue\n";  break;
+    }
+}
 
 void Digitiser::on_actionOpen_triggered(){
-    //QString fileName=QFileDialog::getOpenFileName(this, tr("Open Line Graph"), "", tr("Images (*.BMP *.GIF *.JPG *.JPEG *.PNG *.PBM *.PGM *.PPM *.XBM *.XPM)"));
-    QString fileName = "C:/Users/ASUS/Documents/Qt/Graph.png";
+    QString fileName=QFileDialog::getOpenFileName(this, tr("Open Line Graph"), "", tr("Images (*.BMP *.GIF *.JPG *.JPEG *.PNG *.PBM *.PGM *.PPM *.XBM *.XPM)"));
+    //QString fileName = "C:/Users/ASUS/Documents/Qt/Graph.jfif";
     if(QString::compare(fileName, QString()) !=0){
         scene->clear();
         pix = QPixmap::fromImage(QImage(fileName));
@@ -48,11 +57,13 @@ void Digitiser::on_actionOpen_triggered(){
         };
     }
 }
+//add reminder to recalibrate
 void Digitiser::resizeEvent(QResizeEvent *){
     ui->view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
     sizeX = this->size().width();
     sizeY = this->size().height();
-    on_resetCalibration_clicked();
+    if(calibrated)
+        on_actionCalibrate_triggered();
 }
 bool Digitiser::noGraphLoaded(){
     int openNow = QMessageBox::information(this,tr("Digitiser Calibration"),tr("A graph must be loaded first, would you like to do that now?"),
@@ -76,10 +87,10 @@ void Digitiser::on_actionCalibrate_triggered(){
     }else{
         if(!calibrating){
             on_resetCalibration_clicked();
-            ui->calibrateGroup->show();
+            //ui->calibrateGroup->show();
             calibrating = true;
         }else{
-            ui->calibrateGroup->hide();
+            // ui->calibrateGroup->hide();
             calibrating = false;
         }
     }
@@ -98,6 +109,13 @@ void Digitiser::viewClicked(QPointF point){
             break;
         }
     }
+    qDebug() << "Pixel Point";
+    qDebug() << point;
+    if(calibrated){
+        QPointF realPoint( (point.x()-xOffset) *xPixToGraph, (point.y()-yOffset) *yPixToGraph);
+        qDebug() << "Graph Point";
+        qDebug() << realPoint;
+    }
 }
 
 void Digitiser::on_resetCalibration_clicked(){
@@ -110,22 +128,28 @@ void Digitiser::on_resetCalibration_clicked(){
 void Digitiser::on_calibrateButton_clicked(){
     calibrating = false;
     calibrated = true;
-    x1=ui->x1Box->value();
-    x2=ui->x2Box->value();
-    y1=ui->y1Box->value();
-    y2=ui->y2Box->value();
-    qDebug() << x1;
-    qDebug() << x2;
-    qDebug() << y1;
-    qDebug() << y2;
 
-    double xScale = (abs(x1-x2))/(abs(axis[0].x()-axis[1].x()));
-    qDebug() << xScale;
-    double yScale = (abs(y1-y2))/(abs(axis[2].y()-axis[3].y()));
-    qDebug() << yScale;
-    //double xOffset = ui->size().x()-sizeX
+    calibrate(ui->x1Box->value(), ui->x2Box->value(), axis[0].x(), axis[1].x(), xPixToGraph, xGraphToPix, xOffset);
+    calibrate(ui->y1Box->value(), ui->y2Box->value(), axis[2].y(), axis[3].y(), yPixToGraph, yGraphToPix, yOffset);
 
     ui->calibrateGroup->hide();
+}
+
+void Digitiser::calibrate(double graph1, double graph2, double pix1, double pix2, double &pixToGraph, double &graphToPix, double &offset){
+    double pixChange = graph1-graph2;
+    double graphChange = pix1-pix2;
+    pixToGraph = (pixChange/graphChange);
+    graphToPix = (graphChange/pixChange);
+    qDebug() << "x1Graph " << graph1 << "  x2Graph " << graph2;
+    qDebug() << "x1Pixel " << pix1 << "  x2Pixel " << pix2;
+    qDebug() << "xPixChange " << pixChange << "  xGraphChange " << graphChange;
+    qDebug() << "xPixToGraph " << pixToGraph << "  xGraphToPix " << graphToPix;
+    double offset1 =(pix1-(graph1*graphToPix));
+    double offset2 =(pix2-(graph2*graphToPix));
+    offset = (offset1+offset2)/2;
+    qDebug() << "offset1 " << offset1 << "  offset1 " << offset2;
+    qDebug() << "offset " << offset;
+
 }
 
 void Digitiser::setDefaults(){
@@ -135,3 +159,8 @@ void Digitiser::setDefaults(){
     ui->y2Box->setValue(y2);
 }
 
+
+void Digitiser::on_sideBar_currentChanged(int index)
+{
+
+}

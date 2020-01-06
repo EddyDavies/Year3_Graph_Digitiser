@@ -36,9 +36,12 @@ private slots:
     void on_resetCalibration_clicked();
     void viewClicked(QPointF);
 
+    void on_sideBar_currentChanged(int index);
+
 private:
     bool noGraphLoaded();
     void setDefaults();
+    void calibrate(double graph1, double graph2, double pix1, double pix2, double &pixToGraph, double &graphToPix, double &offset);
 
     Ui::Digitiser *ui;
     QGraphicsScene *scene;
@@ -47,15 +50,19 @@ private:
 
     QVector<QPointF> axis;
     double x1=0;
-    double x2=100;
+    double x2=10;
     double y1=0;
-    double y2=100;
+    double y2=1000;
     double sizeY;
     double sizeX;
-    double xScale;
-    double yScale;
+    double xPixToGraph;
+    double xGraphToPix;
+    double yPixToGraph;
+    double yGraphToPix;
+    double xOffset;
+    double yOffset;
     bool calibrating = false;
     bool calibrated = false;
-    bool opened = false; 
+    bool opened = false;
 };
 #endif // DIGITISER_H
