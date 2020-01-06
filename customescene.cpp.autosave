@@ -1,0 +1,6 @@
+#include "customescene.h"
+
+CustomeScene::CustomeScene()
+{
+
+}
