@@ -31,29 +31,24 @@ protected:
 private slots:
     void on_actionOpen_triggered();
     void on_actionCalibrate_triggered();
+    void on_calibrateButton_clicked();
+    void on_resetCalibration_clicked();
 
 private:
-    void noGraphLoaded();
-    void storeValues(QVector<QPointF> &axis, double &first, double &second);
-    void convertValues();
-    void calibrate();
-    void cancelCalibration();
-    void clearCalibration();
+    bool noGraphLoaded();
 
-    bool calibratedAtSize = false;
     Ui::Digitiser *ui;
     QGraphicsScene *scene;
     QPixmap pix;
     QGraphicsPixmapItem *pixItem;
 
+    QVector<QPointF> axis;
     double x1=0;
     double x2=100;
     double y1=0;
     double y2=100;
     bool calibrating = false;
     bool calibrated = false;
-    QVector<QPointF> xAxis;
-    QVector<QPointF> yAxis;
     bool opened = false; 
 };
 #endif // DIGITISER_H
