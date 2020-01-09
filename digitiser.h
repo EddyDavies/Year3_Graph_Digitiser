@@ -14,6 +14,7 @@
 #include <QApplication>
 
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Digitiser; }
 QT_END_NAMESPACE
@@ -36,23 +37,22 @@ private slots:
     void on_resetCalibration_clicked();
     void viewClicked(QPointF);
 
-    void on_sideBar_currentChanged(int index);
+    void on_actionSave_triggered();
+
+    void on_actionSelect_Points_triggered();
 
 private:
-    bool noGraphLoaded();
-    void setDefaults();
+    enum Group{cali, selectPoints, save};
+
+    void createGroups();
+    void selectGroup(Group group=cali);
+    void noGraphLoaded();
     void calibrate(double graph1, double graph2, double pix1, double pix2, double &pixToGraph, double &graphToPix, double &offset);
 
     Ui::Digitiser *ui;
     QGraphicsScene *scene;
-    QPixmap pix;
-    QGraphicsPixmapItem *pixItem;
 
     QVector<QPointF> axis;
-    double x1=0;
-    double x2=10;
-    double y1=0;
-    double y2=1000;
     double sizeY;
     double sizeX;
     double xPixToGraph;
@@ -61,8 +61,9 @@ private:
     double yGraphToPix;
     double xOffset;
     double yOffset;
+    bool opened = false;
     bool calibrating = false;
     bool calibrated = false;
-    bool opened = false;
+    bool selectingPoints = false;
 };
 #endif // DIGITISER_H

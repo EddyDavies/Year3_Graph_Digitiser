@@ -6,201 +6,343 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>934</width>
-    <height>463</height>
+    <width>1003</width>
+    <height>536</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Digitiser</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QGraphicsView" name="view"/>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="calibrateGroup">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title">
-         <string>Calibration</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="4" column="0">
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>7</width>
-             <height>10</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0" rowspan="2">
-          <widget class="QLabel" name="x1Label">
-           <property name="text">
-            <string>X Coordinate First Point</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="6">
-          <widget class="QDoubleSpinBox" name="y1Box"/>
-         </item>
-         <item row="2" column="6">
-          <widget class="QDoubleSpinBox" name="x1Box"/>
-         </item>
-         <item row="7" column="0">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>17</width>
-             <height>27</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="5" column="0" colspan="6">
-          <widget class="QLabel" name="x2Label">
-           <property name="text">
-            <string>X Coordinate Second Point</string>
-           </property>
-          </widget>
-         </item>
-         <item row="11" column="0" colspan="6">
-          <widget class="QLabel" name="y2Label">
-           <property name="text">
-            <string>Y Coordinate Second Point</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0" colspan="5">
-          <widget class="QLabel" name="y1Label">
-           <property name="text">
-            <string>Y Coordinate First Point</string>
-           </property>
-          </widget>
-         </item>
-         <item row="13" column="0" colspan="2">
-          <widget class="QPushButton" name="resetCalibration">
-           <property name="text">
-            <string>Restart Calibration</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="6">
-          <widget class="QDoubleSpinBox" name="x2Box"/>
-         </item>
-         <item row="11" column="6">
-          <widget class="QDoubleSpinBox" name="y2Box"/>
-         </item>
-         <item row="13" column="5" colspan="2">
-          <widget class="QPushButton" name="calibrateButton">
-           <property name="text">
-            <string>Calibrate</string>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="0">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Expanding</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="10" column="0">
-          <spacer name="verticalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>10</width>
-             <height>10</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="0">
-          <spacer name="verticalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="6">
-          <widget class="QProgressBar" name="progressBar">
-           <property name="value">
-            <number>24</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QGraphicsView" name="view"/>
     </item>
     <item>
-     <widget class="QLabel" name="instructLabel">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QGroupBox" name="calibrateGroup">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
        <size>
-        <width>0</width>
-        <height>50</height>
+        <width>200</width>
+        <height>0</height>
        </size>
       </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
       </property>
-      <property name="text">
-       <string/>
+      <property name="title">
+       <string>Calibration</string>
       </property>
-      <property name="wordWrap">
-       <bool>true</bool>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="calibrateInstruct">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="calibrateProgress">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="x1Label">
+         <property name="text">
+          <string>X Coordinate First Point</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="x1Box"/>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>7</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="x2Label">
+         <property name="text">
+          <string>X Coordinate Second Point</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="x2Box"/>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>17</width>
+           <height>27</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="y1Label">
+         <property name="text">
+          <string>Y Coordinate First Point</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="y1Box"/>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>10</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="y2Label">
+         <property name="text">
+          <string>Y Coordinate Second Point</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="y2Box">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <kerning>true</kerning>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="resetCalibration">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Restart Calibration</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="calibrateButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Calibrate</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="selectPointsGroup">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Select Points</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="selectPointsInstruct">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="saveGroup">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Save</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="saveInstruct">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -210,7 +352,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>934</width>
+     <width>1003</width>
      <height>22</height>
     </rect>
    </property>
@@ -218,7 +360,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
    </widget>
@@ -227,6 +368,7 @@
      <string>Edit</string>
     </property>
     <addaction name="actionCalibrate"/>
+    <addaction name="actionSelect_Points"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -242,24 +384,15 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
-   <addaction name="actionSave"/>
    <addaction name="actionCalibrate"/>
+   <addaction name="actionSelect_Points"/>
+   <addaction name="actionSave"/>
   </widget>
-  <action name="actionNew">
-   <property name="icon">
-    <iconset resource="Resources.qrc">
-     <normaloff>:/images/New.png</normaloff>:/images/New.png</iconset>
-   </property>
-   <property name="text">
-    <string>New</string>
-   </property>
-  </action>
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/images/Folder.png</normaloff>:/images/Folder.png</iconset>
+     <normaloff>:/images/Load.png</normaloff>:/images/Load.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -268,7 +401,7 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/images/Save file.png</normaloff>:/images/Save file.png</iconset>
+     <normaloff>:/images/Save.png</normaloff>:/images/Save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -281,6 +414,15 @@
    </property>
    <property name="text">
     <string>Calibrate</string>
+   </property>
+  </action>
+  <action name="actionSelect_Points">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/images/Click_Points.png</normaloff>:/images/Click_Points.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select Points</string>
    </property>
   </action>
  </widget>

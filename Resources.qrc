@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/images">
-        <file>Folder.png</file>
-        <file>Save file.png</file>
-        <file>New.png</file>
+        <file>Load.png</file>
+        <file>Save.png</file>
         <file>Calibration.png</file>
+        <file>Click_Points.png</file>
     </qresource>
 </RCC>
