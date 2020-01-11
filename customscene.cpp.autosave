@@ -1,5 +1,4 @@
-#include "customscene.h"
-#include <QDebug>
+#include "customscene.h" //includes this class' header file
 
 CustomScene::CustomScene(QObject *parent) : //creates a custom QGraphicsScene class that inherits all the QGraphicScene functionality
     QGraphicsScene(parent) //runs the constructor for the QGraphicsScene class with this class' constructors argument as the input

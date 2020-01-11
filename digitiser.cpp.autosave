@@ -5,11 +5,11 @@ Digitiser::Digitiser(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Digitiser)
 {
-    ui->setupUi(this);
-    scene = new CustomScene(this);
-    ui->view->setScene(scene);
-    connect(scene,SIGNAL(viewClick(QPointF)),this,SLOT(viewClicked(QPointF)));
-
+    ui->setupUi(this); //point this file to the digitiser.ui file
+    scene = new CustomScene(this); //creates an instance of the custom scene class and point it at the QGraphicsScene pointer
+    ui->view->setScene(scene); //sets the QGraphicsView in the ui to show the scene
+    connect(scene,SIGNAL(viewClick(QPointF)),this,SLOT(viewClicked(QPointF))); // this connects the signal in customescne.cpp and the slot in this file 
+    //so that when emit viewClick() is called in the signal function, the slot function is called.
     createGroups();
 }
 
@@ -217,26 +217,18 @@ void Digitiser::convertPoint(QPointF pixelPoint){
     if(!xAxisTypeLog & !yAxisTypeLog){
         point.setX(x);
         point.setY(y);
-//        point.setX(round(x*100)/100);
-//        point.setY(round(y*100)/100);
         linLinPoints.append(point);
     }else if(!xAxisTypeLog & yAxisTypeLog){
         point.setX(x);
         point.setY(exp(y));
-//        point.setX(round(x*100)/100);
-//        point.setY(exp( y*100)/100 ));
-        ui->xLabel->setNum(point.x());
-        ui->yLabel->setNum(point.y());
         linLogPoints.append(point);
     }else if(xAxisTypeLog & !yAxisTypeLog){
         point.setX(exp(x));
         point.setY(y);
-//        point.setX(exp( round(x*100)/100 ));
-//        point.setY(round(y*100)/100 );
-        ui->xLabel->setNum(point.x());
-        ui->yLabel->setNum(point.y());
         logLinPoints.append(point);
     }
+    ui->xLabel->setNum(round(point.x()*100)/100 );
+    ui->yLabel->setNum(round(point.y()*100)/100 );
 }
 void Digitiser::noGraphLoaded(){
     int openNow = QMessageBox::information(this,tr("Digitiser Load"),tr("A graph must be loaded first. \nWould you like to do that now?"),

@@ -12,6 +12,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QApplication>
+#include <QDoubleSpinBox>
 
 
 
@@ -38,16 +39,26 @@ private slots:
     void viewClicked(QPointF);
 
     void on_actionSave_triggered();
-
     void on_actionSelect_Points_triggered();
+    void on_clearPoints_clicked();
+    void on_xLinear_toggled(bool checked);
+    void on_yLinear_toggled(bool checked);
+    void on_xLog_toggled(bool checked);
+    void on_yLog_toggled(bool checked);
 
 private:
-    enum Group{cali, selectPoints, save};
-
+    enum Groups{cali, selectPoints, save};
+    Groups group = cali;
+    bool xAxisTypeLog = false;
+    bool yAxisTypeLog = false;
     void createGroups();
-    void selectGroup(Group group=cali);
+    void selectGroup(Groups group=cali);
+    void calibrate(bool log, double logBase, double graph1, double graph2, double pix1, double pix2, double &pixToGraph, double &graphToPix, double &offset);
     void noGraphLoaded();
-    void calibrate(double graph1, double graph2, double pix1, double pix2, double &pixToGraph, double &graphToPix, double &offset);
+    void notCalibrated();
+    void convertPoint(QPointF pixelPoint);
+    void write(QVector<QPointF> &points);
+    double baseLog(double base, double x);
 
     Ui::Digitiser *ui;
     QGraphicsScene *scene;
@@ -62,8 +73,11 @@ private:
     double xOffset;
     double yOffset;
     bool opened = false;
-    bool calibrating = false;
     bool calibrated = false;
-    bool selectingPoints = false;
+
+    QVector<QPointF> pixelPoints;
+    QVector<QPointF> linLinPoints;
+    QVector<QPointF> linLogPoints;
+    QVector<QPointF> logLinPoints;
 };
 #endif // DIGITISER_H
