@@ -561,7 +561,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="saveGroup">
+     <widget class="QGroupBox" name="automatedGroup">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -581,11 +581,11 @@
        </size>
       </property>
       <property name="title">
-       <string>Save</string>
+       <string>Automated</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="saveInstruct">
+       <item row="1" column="1">
+        <widget class="QLabel" name="automatedInstruct">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -609,6 +609,13 @@
          </property>
          <property name="wordWrap">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QProgressBar" name="progressBar">
+         <property name="value">
+          <number>24</number>
          </property>
         </widget>
        </item>
@@ -639,6 +646,7 @@
     </property>
     <addaction name="actionCalibrate"/>
     <addaction name="actionSelect_Points"/>
+    <addaction name="actionAutomatic"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -658,6 +666,7 @@
    <addaction name="actionCalibrate"/>
    <addaction name="actionSelect_Points"/>
    <addaction name="actionSave"/>
+   <addaction name="actionAutomatic"/>
   </widget>
   <action name="actionOpen">
    <property name="icon">
@@ -695,13 +704,22 @@
     <string>Select Points</string>
    </property>
   </action>
+  <action name="actionAutomatic">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/images/Automatic.png</normaloff>:/images/Automatic.png</iconset>
+   </property>
+   <property name="text">
+    <string>Automatic</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="Resources.qrc"/>
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>

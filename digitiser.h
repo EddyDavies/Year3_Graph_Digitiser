@@ -46,11 +46,15 @@ private slots:
     void on_xLog_toggled(bool checked);
     void on_yLog_toggled(bool checked);
 
+
+    void on_actionAutomatic_triggered();
+
 private:
-    enum Groups{cali, selectPoints, save};
+    enum Groups{cali, selectPoints, automated};
     Groups group = cali;
-    bool xAxisTypeLog = false;
-    bool yAxisTypeLog = false;
+//    void setSizes();
+//    void mousePressEvent(QMouseEvent *event);
+
     void createGroups();
     void selectGroup(Groups group=cali);
     void calibrate(bool log, double logBase, double graph1, double graph2, double pix1, double pix2, double &pixToGraph, double &graphToPix, double &offset);
@@ -59,21 +63,34 @@ private:
     void convertPoint(QPointF pixelPoint);
     void write(QVector<QPointF> &points);
     double baseLog(double base, double x);
+//    void pointColour(QPoint floatPoint);
+
 
     Ui::Digitiser *ui;
     QGraphicsScene *scene;
 
     QVector<QPointF> axis;
-    double sizeY;
-    double sizeX;
+    QImage tempI;
+    QImage &image = tempI;
+    QPixmap tempP;
+    QPixmap &pix = tempP;
+
+    QSize *uiSize;
+    QSize viewSize;
+    QSize imageSize;
     double xPixToGraph;
     double xGraphToPix;
     double yPixToGraph;
     double yGraphToPix;
-    double xOffset;
-    double yOffset;
+    double xCalibrationOffset;
+    double yCalibrationOffset;
     bool opened = false;
     bool calibrated = false;
+    double ratio;
+    double xRatioOffset;
+    double yRatioOffset;
+    double uiX;
+    double uiY;
 
     QVector<QPointF> pixelPoints;
     QVector<QPointF> linLinPoints;

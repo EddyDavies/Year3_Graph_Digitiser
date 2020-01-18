@@ -4,5 +4,6 @@
         <file>Save.png</file>
         <file>Calibration.png</file>
         <file>Click_Points.png</file>
+        <file>Automatic.png</file>
     </qresource>
 </RCC>
